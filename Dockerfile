@@ -29,5 +29,9 @@ RUN npm ci --omit=dev
 # Copy built assets from builder stage
 COPY --from=builder /app/dist ./dist
 
+# Set default port to 80 (can be overridden by environment variable)
+ENV PORT=80
+EXPOSE 80
+
 # Start the server using the production build
 CMD ["npm", "run", "start:prod"]
